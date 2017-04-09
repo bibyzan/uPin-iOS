@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Pin Map View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="UPinMapViewController" customModule="uPin" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,11 +18,57 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ezo-bE-KOD" customClass="GMSMapView">
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="KHd-uX-jXo"/>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rfj-ky-8vZ"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7uj-Xu-JUy">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="121" id="YIE-ZB-ME3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XnM-KB-XG7">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="L7h-kd-ZHr"/>
+                                    <constraint firstAttribute="width" constant="70" id="fxj-K3-E9O"/>
+                                </constraints>
+                                <state key="normal" image="plus-circle-outline.png"/>
+                                <connections>
+                                    <action selector="pinIt_touchUpInsideSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9E7-fy-Mfm"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="KHd-uX-jXo" firstAttribute="top" secondItem="Rfj-ky-8vZ" secondAttribute="bottom" constant="8" id="1jl-bI-574"/>
+                            <constraint firstItem="7uj-Xu-JUy" firstAttribute="top" secondItem="ezo-bE-KOD" secondAttribute="bottom" constant="19" id="25K-Z4-SQl"/>
+                            <constraint firstItem="ezo-bE-KOD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="7Ri-hb-GwU"/>
+                            <constraint firstItem="7uj-Xu-JUy" firstAttribute="leading" secondItem="Rfj-ky-8vZ" secondAttribute="trailing" constant="8" id="B7q-Sr-rg6"/>
+                            <constraint firstItem="ezo-bE-KOD" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="B82-Dj-DDi"/>
+                            <constraint firstItem="XnM-KB-XG7" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="LG3-zU-m68"/>
+                            <constraint firstItem="Rfj-ky-8vZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="cnn-Lf-71I"/>
+                            <constraint firstItem="XnM-KB-XG7" firstAttribute="top" secondItem="ezo-bE-KOD" secondAttribute="bottom" constant="-84" id="fS4-c5-eDr"/>
+                            <constraint firstAttribute="trailing" secondItem="ezo-bE-KOD" secondAttribute="trailing" id="pfd-KH-7KM"/>
+                            <constraint firstItem="KHd-uX-jXo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="psN-VK-3LU"/>
+                            <constraint firstItem="Rfj-ky-8vZ" firstAttribute="top" secondItem="ezo-bE-KOD" secondAttribute="bottom" constant="14" id="qIg-e4-hxt"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="KHd-uX-jXo" secondAttribute="bottom" constant="8" id="s9s-X7-luU"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="ezo-bE-KOD" id="4RH-Ob-PTa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="117.59999999999999" y="123.68815592203899"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="plus-circle-outline.png" width="256" height="256"/>
+    </resources>
 </document>
