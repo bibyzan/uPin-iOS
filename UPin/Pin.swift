@@ -10,6 +10,7 @@ import Foundation
 import GoogleMaps
 
 class Pin {
+	var id: String?
 	var mapInstance: GMSMarker?
 	var coordinate: CLLocationCoordinate2D
 	var dataSource: String?
@@ -21,16 +22,21 @@ class Pin {
 		self.title = title
 	}
 	
-	func getMapInstance(_ view: GMSMapView)->GMSMarker {
-		if let instance = mapInstance {
-			return instance
+	func setMapInstance(_ view: GMSMapView) {
+		if let _ = mapInstance {
+			//already made
 		} else {
 			mapInstance = GMSMarker()
+			if let _ = id {
+				//is api pin
+			} else {
+				mapInstance?.title = title
+			}
+			
 			mapInstance?.position = coordinate
 			mapInstance?.iconView = UIImageView(image: UIImage(named: "redpin.png"))
+			mapInstance?.iconView?.frame.size = CGSize(width: 60, height: 60)
 			mapInstance?.map = view
-			
-			return mapInstance!
 		}
 	}
 }

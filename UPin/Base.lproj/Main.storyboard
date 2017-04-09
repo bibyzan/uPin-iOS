@@ -22,11 +22,20 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ezo-bE-KOD" customClass="GMSMapView">
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="KHd-uX-jXo"/>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rfj-ky-8vZ"/>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="KHd-uX-jXo">
+                                <connections>
+                                    <action selector="stepperValueChangedWithSender:" destination="BYZ-38-t0r" eventType="valueChanged" id="6yw-KP-EuR"/>
+                                </connections>
+                            </stepper>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Rfj-ky-8vZ">
+                                <connections>
+                                    <action selector="filterSwitched:" destination="BYZ-38-t0r" eventType="valueChanged" id="Rdp-79-seO"/>
+                                </connections>
+                            </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7uj-Xu-JUy">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="121" id="YIE-ZB-ME3"/>
+                                    <constraint firstAttribute="height" constant="21" id="6pK-bn-XVv"/>
+                                    <constraint firstAttribute="width" constant="188" id="JVY-5U-kli"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -46,11 +55,11 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="KHd-uX-jXo" firstAttribute="top" secondItem="Rfj-ky-8vZ" secondAttribute="bottom" constant="8" id="1jl-bI-574"/>
-                            <constraint firstItem="7uj-Xu-JUy" firstAttribute="top" secondItem="ezo-bE-KOD" secondAttribute="bottom" constant="19" id="25K-Z4-SQl"/>
                             <constraint firstItem="ezo-bE-KOD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="7Ri-hb-GwU"/>
-                            <constraint firstItem="7uj-Xu-JUy" firstAttribute="leading" secondItem="Rfj-ky-8vZ" secondAttribute="trailing" constant="8" id="B7q-Sr-rg6"/>
                             <constraint firstItem="ezo-bE-KOD" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="B82-Dj-DDi"/>
                             <constraint firstItem="XnM-KB-XG7" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="LG3-zU-m68"/>
+                            <constraint firstItem="7uj-Xu-JUy" firstAttribute="leading" secondItem="Rfj-ky-8vZ" secondAttribute="trailing" constant="8" id="MXq-uW-sYt"/>
+                            <constraint firstItem="7uj-Xu-JUy" firstAttribute="top" secondItem="ezo-bE-KOD" secondAttribute="bottom" constant="19" id="OLb-CU-ubL"/>
                             <constraint firstItem="Rfj-ky-8vZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="cnn-Lf-71I"/>
                             <constraint firstItem="XnM-KB-XG7" firstAttribute="top" secondItem="ezo-bE-KOD" secondAttribute="bottom" constant="-84" id="fS4-c5-eDr"/>
                             <constraint firstAttribute="trailing" secondItem="ezo-bE-KOD" secondAttribute="trailing" id="pfd-KH-7KM"/>
@@ -60,12 +69,78 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="filterLabel" destination="7uj-Xu-JUy" id="Hoy-na-TdX"/>
+                        <outlet property="filterStepper" destination="KHd-uX-jXo" id="fS0-Uz-ODz"/>
+                        <outlet property="filterSwitch" destination="Rfj-ky-8vZ" id="0ED-hs-f19"/>
                         <outlet property="mapView" destination="ezo-bE-KOD" id="4RH-Ob-PTa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="117.59999999999999" y="123.68815592203899"/>
+        </scene>
+        <!--Thought Board View Controller-->
+        <scene sceneID="XL1-1e-ZA9">
+            <objects>
+                <viewController id="AfZ-OX-r0Y" customClass="ThoughtBoardViewController" customModule="uPin" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Fb2-6W-ZZw"/>
+                        <viewControllerLayoutGuide type="bottom" id="7Yj-wt-8KH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bUk-6V-ahR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thought Board for: [title]" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="plT-h7-IJN">
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="82" id="uq9-3I-CuS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="21"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oc2-aU-fc0">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="AfZ-OX-r0Y" id="TGN-Ea-Z7c"/>
+                                    <outlet property="delegate" destination="AfZ-OX-r0Y" id="8gQ-bY-s09"/>
+                                </connections>
+                            </tableView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LIT-fp-ECV">
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gcn-oL-kup">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="1mL-Uj-NSN"/>
+                                    <constraint firstAttribute="width" constant="46" id="auq-HD-vn6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Post"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7Yj-wt-8KH" firstAttribute="top" secondItem="LIT-fp-ECV" secondAttribute="bottom" constant="20" id="2ih-dn-WuP"/>
+                            <constraint firstItem="oc2-aU-fc0" firstAttribute="leading" secondItem="bUk-6V-ahR" secondAttribute="leading" id="4n5-Cg-2EJ"/>
+                            <constraint firstItem="LIT-fp-ECV" firstAttribute="leading" secondItem="bUk-6V-ahR" secondAttribute="leadingMargin" id="79J-ji-Iw4"/>
+                            <constraint firstItem="7Yj-wt-8KH" firstAttribute="top" secondItem="Gcn-oL-kup" secondAttribute="bottom" constant="20" id="GYE-Wh-pcU"/>
+                            <constraint firstAttribute="trailing" secondItem="oc2-aU-fc0" secondAttribute="trailing" id="NpV-6l-WBW"/>
+                            <constraint firstItem="Gcn-oL-kup" firstAttribute="top" secondItem="oc2-aU-fc0" secondAttribute="bottom" constant="14" id="Vch-tX-Zae"/>
+                            <constraint firstItem="plT-h7-IJN" firstAttribute="leading" secondItem="bUk-6V-ahR" secondAttribute="leading" id="anG-dT-GIP"/>
+                            <constraint firstAttribute="trailing" secondItem="plT-h7-IJN" secondAttribute="trailing" id="cht-il-rfP"/>
+                            <constraint firstItem="oc2-aU-fc0" firstAttribute="top" secondItem="plT-h7-IJN" secondAttribute="bottom" id="ftm-tF-leE"/>
+                            <constraint firstItem="Gcn-oL-kup" firstAttribute="leading" secondItem="LIT-fp-ECV" secondAttribute="trailing" constant="9" id="iBe-JE-LRq"/>
+                            <constraint firstItem="Gcn-oL-kup" firstAttribute="trailing" secondItem="bUk-6V-ahR" secondAttribute="trailingMargin" id="lo9-ZS-532"/>
+                            <constraint firstItem="plT-h7-IJN" firstAttribute="top" secondItem="bUk-6V-ahR" secondAttribute="top" id="tFD-n5-bON"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qf3-2o-97Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="860" y="123.68815592203899"/>
         </scene>
     </scenes>
     <resources>

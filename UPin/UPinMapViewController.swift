@@ -8,11 +8,22 @@
 
 import UIKit
 import GoogleMaps
+import FacebookLogin
+import FacebookCore
+import FBSDKLoginKit
 //import GooglePlaces
 
 class UPinMapViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
 	@IBOutlet var mapView: GMSMapView!
+	@IBOutlet var filterStepper: UIStepper!
+	@IBOutlet var filterSwitch: UISwitch!
+	@IBOutlet var filterLabel: UILabel!
 	
+	var facebookLoginButton: LoginButton!
+	
+	var apiPins: [Pin] = []
+	var filterPins: [PinFilter:[Pin]] = [:]
+	var filters: [PinFilter:Bool] = [.nearbyPlaces:false,.taggedLocations:false,.nearbyEvents:false]
 	var locationManager = CLLocationManager()
 	var currentLocation: CLLocation?
 	//var placesClient: GMSPlacesClient!
@@ -35,6 +46,27 @@ class UPinMapViewController: UIViewController, GMSMapViewDelegate, CLLocationMan
 		mapView.isHidden = true
 		mapView.delegate = self
 		
+		filterStepper.maximumValue = Double(filters.count - 1)
+		filterStepper.wraps = true
+		
+		let filter = [PinFilter](filters.keys)[Int(filterStepper.value)]
+		filterLabel.text = filter.rawValue
+		
+		facebookLoginButton = LoginButton(readPermissions: [ .publicProfile, .custom("user_posts"),.custom("user_tagged_places")])
+		
+		facebookLoginButton.frame.origin = CGPoint(x: self.view.frame.width - 200, y: self.view.frame.height - 36)
+		
+		self.view.addSubview(facebookLoginButton)
+		
+		UPinAPI.loadPins() { pins, error in
+			if !wasErrorFromServer(self, "Getting Pins", error) {
+				self.apiPins = pins
+				for pin in pins {
+					pin.setMapInstance(self.mapView)
+				}
+			}
+		}
+		
 		//placesClient = GMSPlacesClient.shared()
 	}
 
@@ -43,8 +75,44 @@ class UPinMapViewController: UIViewController, GMSMapViewDelegate, CLLocationMan
 		// Dispose of any resources that can be recreated.
 	}
 	
+	@IBAction func stepperValueChanged(sender: UIStepper) {
+		let filterArr = [PinFilter](filters.keys)
+		let filter = filterArr[Int(filterStepper.value)]
+		
+		if let filterSetting = filters[filter] {
+			filterLabel.text = filter.rawValue
+			filterSwitch.setOn(filterSetting, animated: true)
+		}
+		
+	}
+	
+	@IBAction func filterSwitched(_ sender: AnyObject) {
+		let filter = [PinFilter](filters.keys)[Int(filterStepper.value)]
+		filters[filter] = filterSwitch.isOn
+		
+		if filterSwitch.isOn {
+			UPinAPI.loadPins(with: filter) { pins, error in
+				if error == nil {
+					self.filterPins[filter] = pins
+					
+					for pin in pins {
+						pin.setMapInstance(self.mapView)
+					}
+				}
+			}
+		} else {
+			if let pins = filterPins[filter] {
+				for pin in pins {
+					pin.mapInstance?.map = nil
+				}
+			}
+			filterPins[filter] = []
+		}
+		
+	}
+	
 	@IBAction func pinIt_touchUpInside(sender: UIButton) {
-		let alert = UIAlertController(title: "What would you like to name your pin?", message: "What are you starting a conversation about?", preferredStyle: .alert)
+		let alert = UIAlertController(title: "What would you like to name your pin?", message: "", preferredStyle: .alert)
 		
 		//sets blank placeholder for popup
 		alert.addTextField(configurationHandler: { (textField) -> Void in
@@ -52,15 +120,23 @@ class UPinMapViewController: UIViewController, GMSMapViewDelegate, CLLocationMan
 		})
 		
 		//Grab the value from the text field, and print it when the user clicks OK.
-		alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+		alert.addAction(UIAlertAction(title: "pin it!", style: .default, handler: { (action) -> Void in
 			let textField = alert.textFields![0] as UITextField
 			let title = textField.text ?? ""
+			
 			
 			let location = self.currentLocation?.coordinate
 			let pin = Pin(title, location!)
 			
-			_ = pin.getMapInstance(self.mapView)
+			UPinAPI.addPin(pin) { pin, error in
+				if !wasErrorFromServer(self, "Adding pin",error) {
+					pin?.setMapInstance(self.mapView)
+					self.apiPins.append(pin!)
+				}
+			}
 		}))
+		
+		alert.addAction(UIAlertAction(title: "cancel", style: .cancel, handler: nil))
 		
 		self.present(alert, animated: true, completion: nil)
 	}

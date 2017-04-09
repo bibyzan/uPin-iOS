@@ -19,6 +19,10 @@
 		7CEA61511E9A227A0040B79E /* redpin.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CEA61501E9A227A0040B79E /* redpin.png */; };
 		7CEA61531E9A23A00040B79E /* PinFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEA61521E9A23A00040B79E /* PinFilter.swift */; };
 		7CEA61551E9A2B7E0040B79E /* plus-circle-outline.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CEA61541E9A2B7E0040B79E /* plus-circle-outline.png */; };
+		7CEA61581E9A41E20040B79E /* FacebookAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEA61571E9A41E20040B79E /* FacebookAPI.swift */; };
+		7CEA615A1E9A475B0040B79E /* UPinAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEA61591E9A475B0040B79E /* UPinAPI.swift */; };
+		7CEA615D1E9A5FDC0040B79E /* iOSExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEA615C1E9A5FDC0040B79E /* iOSExtensions.swift */; };
+		7CEA615F1E9A6CAC0040B79E /* ThoughtBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEA615E1E9A6CAC0040B79E /* ThoughtBoardViewController.swift */; };
 		A9FECAB967CBBAEF5D1C9A69 /* Pods_UPin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6813B9A198782378107EB85E /* Pods_UPin.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +64,10 @@
 		7CEA61501E9A227A0040B79E /* redpin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redpin.png; sourceTree = "<group>"; };
 		7CEA61521E9A23A00040B79E /* PinFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinFilter.swift; sourceTree = "<group>"; };
 		7CEA61541E9A2B7E0040B79E /* plus-circle-outline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus-circle-outline.png"; sourceTree = "<group>"; };
+		7CEA61571E9A41E20040B79E /* FacebookAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookAPI.swift; sourceTree = "<group>"; };
+		7CEA61591E9A475B0040B79E /* UPinAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UPinAPI.swift; sourceTree = "<group>"; };
+		7CEA615C1E9A5FDC0040B79E /* iOSExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSExtensions.swift; sourceTree = "<group>"; };
+		7CEA615E1E9A6CAC0040B79E /* ThoughtBoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThoughtBoardViewController.swift; sourceTree = "<group>"; };
 		D29EC5A2C306CF79A114FD4C /* Pods-UPin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UPin.release.xcconfig"; path = "Pods/Target Support Files/Pods-UPin/Pods-UPin.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,6 +140,10 @@
 				7CEA614B1E9A1A190040B79E /* Pin.swift */,
 				7CEA614D1E9A1BF40040B79E /* Thought.swift */,
 				7CEA61521E9A23A00040B79E /* PinFilter.swift */,
+				7CEA61571E9A41E20040B79E /* FacebookAPI.swift */,
+				7CEA61591E9A475B0040B79E /* UPinAPI.swift */,
+				7CEA615C1E9A5FDC0040B79E /* iOSExtensions.swift */,
+				7CEA615E1E9A6CAC0040B79E /* ThoughtBoardViewController.swift */,
 			);
 			path = UPin;
 			sourceTree = "<group>";
@@ -363,10 +375,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CEA614C1E9A1A190040B79E /* Pin.swift in Sources */,
+				7CEA615D1E9A5FDC0040B79E /* iOSExtensions.swift in Sources */,
 				7CEA61531E9A23A00040B79E /* PinFilter.swift in Sources */,
+				7CEA615F1E9A6CAC0040B79E /* ThoughtBoardViewController.swift in Sources */,
+				7CEA61581E9A41E20040B79E /* FacebookAPI.swift in Sources */,
 				7C2D2E2B1E99901600F2377A /* UPinMapViewController.swift in Sources */,
 				7C2D2E291E99901600F2377A /* AppDelegate.swift in Sources */,
 				7CEA614E1E9A1BF40040B79E /* Thought.swift in Sources */,
+				7CEA615A1E9A475B0040B79E /* UPinAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

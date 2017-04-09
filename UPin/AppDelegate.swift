@@ -9,6 +9,7 @@
 import UIKit
 import GoogleMaps
 import GooglePlaces
+import FBSDKCoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,8 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// Override point for customization after application launch.
 		
 		GMSServices.provideAPIKey("AIzaSyC1zU0uOOBD4y0tFBONVWFZM9KVCwfN5lI")
+		FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+		
 		//GMSPlacesClient.provideAPIKey("AIzaSyA_y0dKQVWUzKVy6HI5cMMF_Jd1Vp67QgQ")
 		return true
+	}
+	
+	func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+		let handled = FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
+		return handled
 	}
 
 	func applicationWillResignActive(_ application: UIApplication) {

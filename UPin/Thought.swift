@@ -9,14 +9,12 @@
 import Foundation
 
 class Thought {
-	var id: String
 	var pinID: String
 	var posterName: String?
 	var text: String
 	var timeStamp: String
 	
-	init(_ id: String, _ pinID: String, _ text: String,_ timeStamp: String) {
-		self.id = id
+	init(_ pinID: String, _ text: String,_ timeStamp: String) {
 		self.pinID = pinID
 		self.text = text
 		self.timeStamp = timeStamp
