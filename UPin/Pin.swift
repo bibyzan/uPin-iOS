@@ -16,6 +16,8 @@ class Pin {
 	var dataSource: String?
 	var title: String
 	var description: String?
+	var timeStamp: String?
+	var sender: String?
 	
 	init(_ title: String,_ coordinate: CLLocationCoordinate2D) {
 		self.coordinate = coordinate

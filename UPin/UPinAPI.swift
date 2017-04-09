@@ -33,12 +33,16 @@ class UPinAPI {
 						if let title = item["pin_title"].string,
 							let longitudeString = item["longitude"].string,
 							let latitudeString = item["latitude"].string,
-							let id = item["pin_id"].int {
+							let id = item["pin_id"].int,
+							let timeStamp = item["updated_at"].string,
+							let sender = item["poster_name"].string {
 							
 							let coordinate = CLLocationCoordinate2D(latitude: Double(latitudeString)!, longitude: Double(longitudeString)!)
 							
 							
 							let pin = Pin(title, coordinate)
+							pin.sender = sender
+							pin.timeStamp = timeStamp
 							pin.id = String(id)
 							pins.append(pin)
 						}
@@ -54,7 +58,7 @@ class UPinAPI {
 	static func addPin(_ pin: Pin, completion: ((Pin?,Error?)->Void)?) {
 		let coordinate = pin.coordinate
 		
-		let parameters: Parameters = ["longitude": coordinate.longitude, "latitude":coordinate.latitude, "pin_title":pin.title]
+		let parameters: Parameters = ["longitude": coordinate.longitude, "latitude":coordinate.latitude, "pin_title":pin.title,"poster_name":SettingsViewController.nickname]
 		
 		Alamofire.request(serverUrl + "/pins", method: .post, parameters: parameters).responseData { response in
 			if let error = response.error {
@@ -85,8 +89,11 @@ class UPinAPI {
 				let json = JSON(data)
 				if let data = json["data"].array {
 					for item in data {
-						if let text = item["thought_text"].string {
-							thoughts.append(Thought(text))
+						if let text = item["thought_text"].string,
+							let sender = item["poster_name"].string {
+							let thought = Thought(text)
+							thought.sender = sender
+							thoughts.append(thought)
 						}
 						
 					}
@@ -97,7 +104,7 @@ class UPinAPI {
 	}
 	
 	static func addThought(with pinID: String, _ text: String, completion: ((Error?)->Void)?) {
-		let parameters: Parameters = ["pin_id":Int(pinID),"thought_text": text]
+		let parameters: Parameters = ["pin_id":Int(pinID),"thought_text": text,"poster_name":SettingsViewController.nickname]
 		
 		Alamofire.request(serverUrl + "/pins/" + pinID + "/thoughts",method: .post, parameters: parameters).responseData { response in
 			if let error = response.error {

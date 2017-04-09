@@ -18,6 +18,7 @@ class UPinMapViewController: UIViewController, GMSMapViewDelegate, CLLocationMan
 	@IBOutlet var filterStepper: UIStepper!
 	@IBOutlet var filterSwitch: UISwitch!
 	@IBOutlet var filterLabel: UILabel!
+	@IBOutlet var segmentControl: UISegmentedControl!
 	
 	var facebookLoginButton: LoginButton!
 	
@@ -31,6 +32,8 @@ class UPinMapViewController: UIViewController, GMSMapViewDelegate, CLLocationMan
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
+		
+		SettingsViewController.loadFavorites()
 		
 		locationManager = CLLocationManager()
 		locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -111,6 +114,58 @@ class UPinMapViewController: UIViewController, GMSMapViewDelegate, CLLocationMan
 		}
 		
 		return true
+	}
+	
+	@IBAction func indexChanged(_ sender: UISegmentedControl) {
+		filterEveryone()
+		switch segmentControl.selectedSegmentIndex
+		{
+		case 0:
+			filterApiFavorites()
+		case 2:
+			filterNonFavorites()
+		default:
+			break;
+		}
+		
+		
+	}
+	
+	func filterNonFavorites() {
+		for pin in apiPins {
+			var isFav = false
+			for fav in SettingsViewController.favorites {
+				if fav == pin.sender {
+					isFav = true
+					break
+				}
+			}
+			if isFav {
+				pin.mapInstance?.map = nil
+			}
+		}
+	}
+	
+	func filterEveryone() {
+		for pin in apiPins {
+			pin.setMapInstance(self.mapView)
+		}
+	}
+	
+	func filterApiFavorites() {
+		for pin in apiPins {
+			var isFav = false
+			for fav in SettingsViewController.favorites {
+				if fav == pin.sender {
+					isFav = true
+					break
+				}
+				
+				if !isFav {
+					pin.mapInstance?.map = nil
+				}
+			}
+		}
 	}
 	
 	func findPin(from marker: GMSMarker)->Pin? {

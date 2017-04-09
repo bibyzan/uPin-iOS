@@ -9,7 +9,7 @@
 import Foundation
 
 class Thought {
-	var posterName: String?
+	var sender: String?
 	var text: String
 	var timeStamp: String?
 	

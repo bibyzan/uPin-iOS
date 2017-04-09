@@ -14,6 +14,9 @@
 		7C2D2E331E99901600F2377A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C2D2E311E99901600F2377A /* LaunchScreen.storyboard */; };
 		7C2D2E3E1E99901700F2377A /* UPinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2D2E3D1E99901700F2377A /* UPinTests.swift */; };
 		7C2D2E491E99901700F2377A /* UPinUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2D2E481E99901700F2377A /* UPinUITests.swift */; };
+		7C497CD71E9A9ADE00BA11F2 /* add_new_b.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C497CD61E9A9ADE00BA11F2 /* add_new_b.png */; };
+		7C497CD91E9A9B9200BA11F2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C497CD81E9A9B9200BA11F2 /* SettingsViewController.swift */; };
+		7C497CDB1E9AAFEA00BA11F2 /* pluspinfade.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C497CDA1E9AAFEA00BA11F2 /* pluspinfade.png */; };
 		7CEA614C1E9A1A190040B79E /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEA614B1E9A1A190040B79E /* Pin.swift */; };
 		7CEA614E1E9A1BF40040B79E /* Thought.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEA614D1E9A1BF40040B79E /* Thought.swift */; };
 		7CEA61511E9A227A0040B79E /* redpin.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CEA61501E9A227A0040B79E /* redpin.png */; };
@@ -24,6 +27,8 @@
 		7CEA615D1E9A5FDC0040B79E /* iOSExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEA615C1E9A5FDC0040B79E /* iOSExtensions.swift */; };
 		7CEA615F1E9A6CAC0040B79E /* ThoughtBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEA615E1E9A6CAC0040B79E /* ThoughtBoardViewController.swift */; };
 		7CEA61621E9A824F0040B79E /* left_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CEA61611E9A824F0040B79E /* left_arrow.png */; };
+		7CEA61641E9A8D720040B79E /* pluspin.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CEA61631E9A8D720040B79E /* pluspin.png */; };
+		7CEA61661E9A92DA0040B79E /* green-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CEA61651E9A92DA0040B79E /* green-gear.png */; };
 		A9FECAB967CBBAEF5D1C9A69 /* Pods_UPin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6813B9A198782378107EB85E /* Pods_UPin.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +65,9 @@
 		7C2D2E441E99901700F2377A /* UPinUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UPinUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C2D2E481E99901700F2377A /* UPinUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UPinUITests.swift; sourceTree = "<group>"; };
 		7C2D2E4A1E99901700F2377A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7C497CD61E9A9ADE00BA11F2 /* add_new_b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_new_b.png; sourceTree = "<group>"; };
+		7C497CD81E9A9B9200BA11F2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		7C497CDA1E9AAFEA00BA11F2 /* pluspinfade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pluspinfade.png; sourceTree = "<group>"; };
 		7CEA614B1E9A1A190040B79E /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		7CEA614D1E9A1BF40040B79E /* Thought.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thought.swift; sourceTree = "<group>"; };
 		7CEA61501E9A227A0040B79E /* redpin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redpin.png; sourceTree = "<group>"; };
@@ -70,6 +78,8 @@
 		7CEA615C1E9A5FDC0040B79E /* iOSExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSExtensions.swift; sourceTree = "<group>"; };
 		7CEA615E1E9A6CAC0040B79E /* ThoughtBoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThoughtBoardViewController.swift; sourceTree = "<group>"; };
 		7CEA61611E9A824F0040B79E /* left_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left_arrow.png; sourceTree = "<group>"; };
+		7CEA61631E9A8D720040B79E /* pluspin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pluspin.png; sourceTree = "<group>"; };
+		7CEA61651E9A92DA0040B79E /* green-gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green-gear.png"; sourceTree = "<group>"; };
 		D29EC5A2C306CF79A114FD4C /* Pods-UPin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UPin.release.xcconfig"; path = "Pods/Target Support Files/Pods-UPin/Pods-UPin.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -146,6 +156,7 @@
 				7CEA61591E9A475B0040B79E /* UPinAPI.swift */,
 				7CEA615C1E9A5FDC0040B79E /* iOSExtensions.swift */,
 				7CEA615E1E9A6CAC0040B79E /* ThoughtBoardViewController.swift */,
+				7C497CD81E9A9B9200BA11F2 /* SettingsViewController.swift */,
 			);
 			path = UPin;
 			sourceTree = "<group>";
@@ -174,6 +185,10 @@
 				7CEA61541E9A2B7E0040B79E /* plus-circle-outline.png */,
 				7CEA61501E9A227A0040B79E /* redpin.png */,
 				7CEA61611E9A824F0040B79E /* left_arrow.png */,
+				7CEA61631E9A8D720040B79E /* pluspin.png */,
+				7CEA61651E9A92DA0040B79E /* green-gear.png */,
+				7C497CD61E9A9ADE00BA11F2 /* add_new_b.png */,
+				7C497CDA1E9AAFEA00BA11F2 /* pluspinfade.png */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -300,11 +315,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CEA61641E9A8D720040B79E /* pluspin.png in Resources */,
 				7CEA61621E9A824F0040B79E /* left_arrow.png in Resources */,
+				7C497CD71E9A9ADE00BA11F2 /* add_new_b.png in Resources */,
 				7C2D2E331E99901600F2377A /* LaunchScreen.storyboard in Resources */,
 				7C2D2E301E99901600F2377A /* Assets.xcassets in Resources */,
+				7C497CDB1E9AAFEA00BA11F2 /* pluspinfade.png in Resources */,
 				7C2D2E2E1E99901600F2377A /* Main.storyboard in Resources */,
 				7CEA61551E9A2B7E0040B79E /* plus-circle-outline.png in Resources */,
+				7CEA61661E9A92DA0040B79E /* green-gear.png in Resources */,
 				7CEA61511E9A227A0040B79E /* redpin.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -381,6 +400,7 @@
 				7CEA614C1E9A1A190040B79E /* Pin.swift in Sources */,
 				7CEA615D1E9A5FDC0040B79E /* iOSExtensions.swift in Sources */,
 				7CEA61531E9A23A00040B79E /* PinFilter.swift in Sources */,
+				7C497CD91E9A9B9200BA11F2 /* SettingsViewController.swift in Sources */,
 				7CEA615F1E9A6CAC0040B79E /* ThoughtBoardViewController.swift in Sources */,
 				7CEA61581E9A41E20040B79E /* FacebookAPI.swift in Sources */,
 				7C2D2E2B1E99901600F2377A /* UPinMapViewController.swift in Sources */,

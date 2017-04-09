@@ -13,6 +13,7 @@ class ThoughtBoardViewController: UIViewController, UITableViewDelegate, UITable
 	@IBOutlet var txtThought: UITextField!
 	@IBOutlet var lblTitle: UILabel!
 	@IBOutlet var btnPostThought: UIButton!
+	@IBOutlet var lblSender: UILabel!
 	
 	var pin: Pin!
 	var thoughts: [Thought] = []
@@ -21,6 +22,7 @@ class ThoughtBoardViewController: UIViewController, UITableViewDelegate, UITable
         super.viewDidLoad()
 		
 		lblTitle.text = "Thought board for: \(pin.title)"
+		lblSender.text = pin.sender ?? "anonymous"
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(ThoughtBoardViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(ThoughtBoardViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
