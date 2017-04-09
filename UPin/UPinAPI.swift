@@ -30,7 +30,6 @@ class UPinAPI {
 				
 				if let data = json["data"].array {
 					for item in data {
-						print(item)
 						if let title = item["pin_title"].string,
 							let longitudeString = item["longitude"].string,
 							let latitudeString = item["latitude"].string,
@@ -77,7 +76,37 @@ class UPinAPI {
 		}
 	}
 	
-	static func addThought(with pinID: String, completion: ((Error?)->Void)?) {
+	static func loadThoughts(with pinID: String, completion: (([Thought],Error?)->Void)?) {
+		Alamofire.request(serverUrl + "/pins/" + pinID + "/thoughts").responseData { response in
+			if let error = response.error {
+				completion?([],error)
+			} else if let data = response.result.value {
+				var thoughts: [Thought] = []
+				let json = JSON(data)
+				if let data = json["data"].array {
+					for item in data {
+						if let text = item["thought_text"].string {
+							thoughts.append(Thought(text))
+						}
+						
+					}
+				}
+				completion?(thoughts,nil)
+			}
+		}
+	}
+	
+	static func addThought(with pinID: String, _ text: String, completion: ((Error?)->Void)?) {
+		let parameters: Parameters = ["pin_id":Int(pinID),"thought_text": text]
 		
+		Alamofire.request(serverUrl + "/pins/" + pinID + "/thoughts",method: .post, parameters: parameters).responseData { response in
+			if let error = response.error {
+				completion?(error)
+			} else if let data = response.result.value {
+				let json = JSON(data)
+				print(json)
+				completion?(nil)
+			}
+		}
 	}
 }

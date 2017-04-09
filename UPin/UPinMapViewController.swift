@@ -41,6 +41,7 @@ class UPinMapViewController: UIViewController, GMSMapViewDelegate, CLLocationMan
 		
 		mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 		mapView.isMyLocationEnabled = true
+		mapView.animate(toZoom: 100)
 		mapView.accessibilityElementsHidden = false
 		//mapView.settings.myLocationButton = true
 		mapView.isHidden = true
@@ -62,6 +63,7 @@ class UPinMapViewController: UIViewController, GMSMapViewDelegate, CLLocationMan
 			if !wasErrorFromServer(self, "Getting Pins", error) {
 				self.apiPins = pins
 				for pin in pins {
+					
 					pin.setMapInstance(self.mapView)
 				}
 			}
@@ -73,6 +75,51 @@ class UPinMapViewController: UIViewController, GMSMapViewDelegate, CLLocationMan
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
+	}
+	
+	func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+		func resizePins(pins: [Pin]) {
+			for pin in pins {
+				let zoom = mapView.camera.zoom
+				let ratio = zoom / 20.0
+				let relativeSideLength: Double = Double(ratio) * 80
+				pin.mapInstance?.iconView?.frame.size = CGSize(width: relativeSideLength,height: relativeSideLength)
+			}
+		}
+		
+		for pinArr in filterPins.values {
+			resizePins(pins: pinArr)
+		}
+		
+		resizePins(pins: apiPins)
+	}
+	
+	func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+		if let pin = findPin(from: marker) {
+			UPinAPI.loadThoughts(with: pin.id!) { thoughts, error in
+				if !wasErrorFromServer(self, "Getting Thoughts", error) {
+					DispatchQueue.main.async {
+						let controller = self.storyboard?.instantiateViewController(withIdentifier: "ThoughtBoardViewController") as! ThoughtBoardViewController
+						controller.thoughts = thoughts
+						controller.pin = pin
+						self.present(controller, animated: false, completion: nil)
+					}
+				}
+			}
+			
+			
+		}
+		
+		return true
+	}
+	
+	func findPin(from marker: GMSMarker)->Pin? {
+		for pin in apiPins {
+			if marker == pin.mapInstance {
+				return pin
+			}
+		}
+		return nil
 	}
 	
 	@IBAction func stepperValueChanged(sender: UIStepper) {

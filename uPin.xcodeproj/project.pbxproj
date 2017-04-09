@@ -23,6 +23,7 @@
 		7CEA615A1E9A475B0040B79E /* UPinAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEA61591E9A475B0040B79E /* UPinAPI.swift */; };
 		7CEA615D1E9A5FDC0040B79E /* iOSExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEA615C1E9A5FDC0040B79E /* iOSExtensions.swift */; };
 		7CEA615F1E9A6CAC0040B79E /* ThoughtBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEA615E1E9A6CAC0040B79E /* ThoughtBoardViewController.swift */; };
+		7CEA61621E9A824F0040B79E /* left_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CEA61611E9A824F0040B79E /* left_arrow.png */; };
 		A9FECAB967CBBAEF5D1C9A69 /* Pods_UPin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6813B9A198782378107EB85E /* Pods_UPin.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,7 @@
 		7CEA61591E9A475B0040B79E /* UPinAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UPinAPI.swift; sourceTree = "<group>"; };
 		7CEA615C1E9A5FDC0040B79E /* iOSExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSExtensions.swift; sourceTree = "<group>"; };
 		7CEA615E1E9A6CAC0040B79E /* ThoughtBoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThoughtBoardViewController.swift; sourceTree = "<group>"; };
+		7CEA61611E9A824F0040B79E /* left_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left_arrow.png; sourceTree = "<group>"; };
 		D29EC5A2C306CF79A114FD4C /* Pods-UPin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UPin.release.xcconfig"; path = "Pods/Target Support Files/Pods-UPin/Pods-UPin.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -171,6 +173,7 @@
 			children = (
 				7CEA61541E9A2B7E0040B79E /* plus-circle-outline.png */,
 				7CEA61501E9A227A0040B79E /* redpin.png */,
+				7CEA61611E9A824F0040B79E /* left_arrow.png */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CEA61621E9A824F0040B79E /* left_arrow.png in Resources */,
 				7C2D2E331E99901600F2377A /* LaunchScreen.storyboard in Resources */,
 				7C2D2E301E99901600F2377A /* Assets.xcassets in Resources */,
 				7C2D2E2E1E99901600F2377A /* Main.storyboard in Resources */,

@@ -82,7 +82,7 @@
         <!--Thought Board View Controller-->
         <scene sceneID="XL1-1e-ZA9">
             <objects>
-                <viewController id="AfZ-OX-r0Y" customClass="ThoughtBoardViewController" customModule="uPin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ThoughtBoardViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AfZ-OX-r0Y" customClass="ThoughtBoardViewController" customModule="uPin" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Fb2-6W-ZZw"/>
                         <viewControllerLayoutGuide type="bottom" id="7Yj-wt-8KH"/>
@@ -119,6 +119,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Post"/>
+                                <connections>
+                                    <action selector="btnPostComment_touchUpInsideSender:" destination="AfZ-OX-r0Y" eventType="touchUpInside" id="a7f-4f-uni"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -137,6 +140,12 @@
                             <constraint firstItem="plT-h7-IJN" firstAttribute="top" secondItem="bUk-6V-ahR" secondAttribute="top" id="tFD-n5-bON"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="btnPostThought" destination="Gcn-oL-kup" id="2ol-5W-C3b"/>
+                        <outlet property="lblTitle" destination="plT-h7-IJN" id="rhl-Hw-Hdr"/>
+                        <outlet property="tblThoughts" destination="oc2-aU-fc0" id="qtN-46-jWT"/>
+                        <outlet property="txtThought" destination="LIT-fp-ECV" id="2vu-Jd-1dq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qf3-2o-97Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
