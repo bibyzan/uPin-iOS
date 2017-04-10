@@ -58,7 +58,11 @@ class UPinAPI {
 	static func addPin(_ pin: Pin, completion: ((Pin?,Error?)->Void)?) {
 		let coordinate = pin.coordinate
 		
-		let parameters: Parameters = ["longitude": coordinate.longitude, "latitude":coordinate.latitude, "pin_title":pin.title,"poster_name":SettingsViewController.nickname]
+		var parameters: Parameters = ["longitude": coordinate.longitude, "latitude":coordinate.latitude, "pin_title":pin.title]
+		
+		if let nickname = SettingsViewController.nickname {
+			parameters["poster_name"] = nickname
+		}
 		
 		Alamofire.request(serverUrl + "/pins", method: .post, parameters: parameters).responseData { response in
 			if let error = response.error {
@@ -80,33 +84,36 @@ class UPinAPI {
 		}
 	}
 	
-	static func loadThoughts(with pinID: String, completion: (([Thought],Error?)->Void)?) {
-		Alamofire.request(serverUrl + "/pins/" + pinID + "/thoughts").responseData { response in
+	static func loadThots(with pinID: String, completion: (([Thot],Error?)->Void)?) {
+		Alamofire.request(serverUrl + "/pins/" + pinID + "/thots").responseData { response in
 			if let error = response.error {
 				completion?([],error)
 			} else if let data = response.result.value {
-				var thoughts: [Thought] = []
+				var thots: [Thot] = []
 				let json = JSON(data)
 				if let data = json["data"].array {
 					for item in data {
-						if let text = item["thought_text"].string,
+						if let text = item["thot_text"].string,
 							let sender = item["poster_name"].string {
-							let thought = Thought(text)
-							thought.sender = sender
-							thoughts.append(thought)
+							let thot = Thot(text)
+							thot.sender = sender
+							thots.append(thot)
 						}
 						
 					}
 				}
-				completion?(thoughts,nil)
+				completion?(thots,nil)
 			}
 		}
 	}
 	
-	static func addThought(with pinID: String, _ text: String, completion: ((Error?)->Void)?) {
-		let parameters: Parameters = ["pin_id":Int(pinID),"thought_text": text,"poster_name":SettingsViewController.nickname]
+	static func addThot(with pinID: String, _ text: String, completion: ((Error?)->Void)?) {
+		var parameters: Parameters = ["pin_id":Int(pinID),"thot_text": text]
+		if let nickname = SettingsViewController.nickname {
+			parameters["poster_name"] = nickname
+		}
 		
-		Alamofire.request(serverUrl + "/pins/" + pinID + "/thoughts",method: .post, parameters: parameters).responseData { response in
+		Alamofire.request(serverUrl + "/pins/" + pinID + "/thots",method: .post, parameters: parameters).responseData { response in
 			if let error = response.error {
 				completion?(error)
 			} else if let data = response.result.value {

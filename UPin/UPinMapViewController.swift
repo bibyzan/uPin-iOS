@@ -33,6 +33,7 @@ class UPinMapViewController: UIViewController, GMSMapViewDelegate, CLLocationMan
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 		
+		segmentControl.selectedSegmentIndex = 1
 		SettingsViewController.loadFavorites()
 		
 		locationManager = CLLocationManager()
@@ -62,6 +63,11 @@ class UPinMapViewController: UIViewController, GMSMapViewDelegate, CLLocationMan
 		
 		self.view.addSubview(facebookLoginButton)
 		
+		loadPins()
+		//placesClient = GMSPlacesClient.shared()
+	}
+	
+	func loadPins() {
 		UPinAPI.loadPins() { pins, error in
 			if !wasErrorFromServer(self, "Getting Pins", error) {
 				self.apiPins = pins
@@ -71,8 +77,11 @@ class UPinMapViewController: UIViewController, GMSMapViewDelegate, CLLocationMan
 				}
 			}
 		}
-		
-		//placesClient = GMSPlacesClient.shared()
+
+	}
+	
+	override func viewDidLayoutSubviews() {
+		facebookLoginButton.frame.origin = CGPoint(x: self.view.frame.width - 200, y: self.view.frame.height - 36)
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -99,11 +108,11 @@ class UPinMapViewController: UIViewController, GMSMapViewDelegate, CLLocationMan
 	
 	func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
 		if let pin = findPin(from: marker) {
-			UPinAPI.loadThoughts(with: pin.id!) { thoughts, error in
-				if !wasErrorFromServer(self, "Getting Thoughts", error) {
+			UPinAPI.loadThots(with: pin.id!) { thots, error in
+				if !wasErrorFromServer(self, "Getting Thots", error) {
 					DispatchQueue.main.async {
-						let controller = self.storyboard?.instantiateViewController(withIdentifier: "ThoughtBoardViewController") as! ThoughtBoardViewController
-						controller.thoughts = thoughts
+						let controller = self.storyboard?.instantiateViewController(withIdentifier: "ThotBoardViewController") as! ThotBoardViewController
+						controller.thots = thots
 						controller.pin = pin
 						self.present(controller, animated: false, completion: nil)
 					}
@@ -117,7 +126,8 @@ class UPinMapViewController: UIViewController, GMSMapViewDelegate, CLLocationMan
 	}
 	
 	@IBAction func indexChanged(_ sender: UISegmentedControl) {
-		filterEveryone()
+		loadPins()
+		
 		switch segmentControl.selectedSegmentIndex
 		{
 		case 0:

@@ -1,5 +1,5 @@
 //
-//  Thought.swift
+//  Thot.swift
 //  UPin
 //
 //  Created by Ben Rasmussen on 4/9/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Thought {
+class Thot {
 	var sender: String?
 	var text: String
 	var timeStamp: String?

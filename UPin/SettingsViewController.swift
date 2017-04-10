@@ -20,7 +20,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+		
+		txtNickname.placeholder = SettingsViewController.nickname ?? "anonymous"
         // Do any additional setup after loading the view.
     }
 

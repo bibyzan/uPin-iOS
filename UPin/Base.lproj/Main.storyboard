@@ -135,24 +135,22 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="KHd-uX-jXo">
-                                <frame key="frameInset" minX="16" minY="630" width="94" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="KHd-uX-jXo">
                                 <color key="tintColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="stepperValueChangedWithSender:" destination="BYZ-38-t0r" eventType="valueChanged" id="6yw-KP-EuR"/>
                                 </connections>
                             </stepper>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Rfj-ky-8vZ">
-                                <frame key="frameInset" minX="16" minY="591" width="51" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Rfj-ky-8vZ">
                                 <connections>
                                     <action selector="filterSwitched:" destination="BYZ-38-t0r" eventType="valueChanged" id="Rdp-79-seO"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Filter Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7uj-Xu-JUy">
-                                <frame key="frameInset" minX="73" minY="596" width="188" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7uj-Xu-JUy">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="188" id="RNO-HE-oet"/>
+                                    <constraint firstAttribute="height" constant="21" id="gHO-s2-s8C"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -188,15 +186,24 @@
                                     <segment title="Public"/>
                                 </segments>
                                 <color key="tintColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="indexChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="8F9-zQ-VaN"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="KHd-uX-jXo" firstAttribute="top" secondItem="Rfj-ky-8vZ" secondAttribute="bottom" constant="8" id="47c-di-Lzq"/>
+                            <constraint firstItem="7uj-Xu-JUy" firstAttribute="leading" secondItem="Rfj-ky-8vZ" secondAttribute="trailing" constant="8" id="CwY-3E-5YQ"/>
+                            <constraint firstItem="Rfj-ky-8vZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="EQJ-DQ-wp4"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="KHd-uX-jXo" secondAttribute="bottom" constant="8" id="Tw6-0u-gol"/>
                             <constraint firstItem="XnM-KB-XG7" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="WDt-lR-DSB"/>
                             <constraint firstItem="i6P-Gp-8b8" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="X7H-UG-1qR"/>
+                            <constraint firstItem="KHd-uX-jXo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="Xqq-UE-itS"/>
                             <constraint firstItem="nt1-wz-sdT" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="19" id="YqL-yh-z9M"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="XnM-KB-XG7" secondAttribute="bottom" constant="90" id="hnr-Fy-OnQ"/>
                             <constraint firstItem="i6P-Gp-8b8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="lhl-KN-M65"/>
+                            <constraint firstItem="7uj-Xu-JUy" firstAttribute="centerY" secondItem="Rfj-ky-8vZ" secondAttribute="centerY" id="s20-Av-PSU"/>
                             <constraint firstItem="nt1-wz-sdT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="zVe-U3-QIt"/>
                         </constraints>
                     </view>
@@ -205,16 +212,17 @@
                         <outlet property="filterStepper" destination="KHd-uX-jXo" id="fS0-Uz-ODz"/>
                         <outlet property="filterSwitch" destination="Rfj-ky-8vZ" id="0ED-hs-f19"/>
                         <outlet property="mapView" destination="ezo-bE-KOD" id="4RH-Ob-PTa"/>
+                        <outlet property="segmentControl" destination="nt1-wz-sdT" id="cvh-P5-Xr7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="117.59999999999999" y="123.68815592203899"/>
         </scene>
-        <!--Thought Board View Controller-->
+        <!--Thot Board View Controller-->
         <scene sceneID="XL1-1e-ZA9">
             <objects>
-                <viewController storyboardIdentifier="ThoughtBoardViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AfZ-OX-r0Y" customClass="ThoughtBoardViewController" customModule="uPin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ThotBoardViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AfZ-OX-r0Y" customClass="ThotBoardViewController" customModule="uPin" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Fb2-6W-ZZw"/>
                         <viewControllerLayoutGuide type="bottom" id="7Yj-wt-8KH"/>
@@ -223,7 +231,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thought Board for: [title]" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="plT-h7-IJN">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thot Board for: [title]" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="plT-h7-IJN">
                                 <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="82" id="uq9-3I-CuS"/>
@@ -297,11 +305,11 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="btnPostThought" destination="Gcn-oL-kup" id="2ol-5W-C3b"/>
+                        <outlet property="btnPostThot" destination="Gcn-oL-kup" id="2ol-5W-C3b"/>
                         <outlet property="lblSender" destination="7B3-Jr-tIp" id="l5O-hi-Sr4"/>
                         <outlet property="lblTitle" destination="plT-h7-IJN" id="rhl-Hw-Hdr"/>
-                        <outlet property="tblThoughts" destination="oc2-aU-fc0" id="qtN-46-jWT"/>
-                        <outlet property="txtThought" destination="LIT-fp-ECV" id="2vu-Jd-1dq"/>
+                        <outlet property="tblThots" destination="oc2-aU-fc0" id="qtN-46-jWT"/>
+                        <outlet property="txtThot" destination="LIT-fp-ECV" id="2vu-Jd-1dq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qf3-2o-97Y" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -8,24 +8,29 @@
 
 import UIKit
 
-class ThoughtBoardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
-	@IBOutlet var tblThoughts: UITableView!
-	@IBOutlet var txtThought: UITextField!
+class ThotBoardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+	@IBOutlet var tblThots: UITableView!
+	@IBOutlet var txtThot: UITextField!
 	@IBOutlet var lblTitle: UILabel!
-	@IBOutlet var btnPostThought: UIButton!
+	@IBOutlet var btnPostThot: UIButton!
 	@IBOutlet var lblSender: UILabel!
 	
 	var pin: Pin!
-	var thoughts: [Thought] = []
+	var thots: [Thot] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		lblTitle.text = "Thought board for: \(pin.title)"
-		lblSender.text = pin.sender ?? "anonymous"
+		if let sender = pin.sender {
+			lblSender.text = sender
+		} else {
+			lblSender.text = "anonymous"
+		}
 		
-		NotificationCenter.default.addObserver(self, selector: #selector(ThoughtBoardViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(ThoughtBoardViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+		lblTitle.text = "Thot board for: \(pin.title)"
+		
+		NotificationCenter.default.addObserver(self, selector: #selector(ThotBoardViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(ThotBoardViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         // Do any additional setup after loading the view.
     }
 
@@ -45,7 +50,7 @@ class ThoughtBoardViewController: UIViewController, UITableViewDelegate, UITable
 				}
 				
 				let tableSize = CGRect(x: 0, y: 82, width: self.view.frame.width, height: self.view.frame.height - height - 80)
-				tblThoughts.frame = tableSize
+				tblThots.frame = tableSize
 				
 				moveBottomOfScreenUp(CGFloat(height))
 			} else {
@@ -57,23 +62,23 @@ class ThoughtBoardViewController: UIViewController, UITableViewDelegate, UITable
 	
 	//moves the messenger back down in the screen after the keyboard closes and restarts the timer to time the messenger out and hide it
 	func keyboardWillHide(_ notification: Notification) {
-		let tableSize = CGRect(x: 0, y: self.view.frame.height - tblThoughts.frame.height, width: self.view.frame.width , height: tblThoughts.frame.height)
-		tblThoughts.frame = tableSize
+		let tableSize = CGRect(x: 0, y: self.view.frame.height - tblThots.frame.height, width: self.view.frame.width , height: tblThots.frame.height)
+		tblThots.frame = tableSize
 	}
 	
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-		txtThought.resignFirstResponder()
+		txtThot.resignFirstResponder()
 		self.view.endEditing(true)
 		
 		return true
 	}
 	
 	func moveBottomOfScreenUp(_ height: CGFloat) {
-		var oldPoint = txtThought.frame.origin
-		txtThought.frame.origin = CGPoint(x: oldPoint.x, y: self.view.frame.size.height - height - 40)
+		var oldPoint = txtThot.frame.origin
+		txtThot.frame.origin = CGPoint(x: oldPoint.x, y: self.view.frame.size.height - height - 40)
 		
-		oldPoint = btnPostThought.frame.origin
-		btnPostThought.frame.origin = CGPoint(x: oldPoint.x, y: self.view.frame.size.height - height - 40)
+		oldPoint = btnPostThot.frame.origin
+		btnPostThot.frame.origin = CGPoint(x: oldPoint.x, y: self.view.frame.size.height - height - 40)
 	}
 	
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -81,13 +86,14 @@ class ThoughtBoardViewController: UIViewController, UITableViewDelegate, UITable
 	}
 	
 	@IBAction func btnPostComment_touchUpInside(sender: UIButton) {
-		let text = txtThought.text ?? ""
+		let text = txtThot.text ?? ""
+		txtThot.text = ""
 		
-		UPinAPI.addThought(with: pin.id!, text) { error in
-			if !wasErrorFromServer(self,"Posting Thought",error) {
-				self.thoughts.append(Thought(text))
+		UPinAPI.addThot(with: pin.id!, text) { error in
+			if !wasErrorFromServer(self,"Posting Thot",error) {
+				self.thots.append(Thot(text))
 				DispatchQueue.main.async {
-					self.tblThoughts.reloadData()
+					self.tblThots.reloadData()
 				}
 			}
 		}
@@ -95,7 +101,7 @@ class ThoughtBoardViewController: UIViewController, UITableViewDelegate, UITable
 	
 	//MARK: UITableViewDelegate methods
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return thoughts.count
+		return thots.count
 	}
 	
 	func numberOfSections(in tableView: UITableView) -> Int {
@@ -111,14 +117,14 @@ class ThoughtBoardViewController: UIViewController, UITableViewDelegate, UITable
 		
 		
 		// Deselect the row
-		tblThoughts.deselectRow(at: indexPath, animated: true)
+		tblThots.deselectRow(at: indexPath, animated: true)
 	}
 	
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Default")
 		
-		cell.textLabel!.text = thoughts[indexPath.row].text
+		cell.textLabel!.text = thots[indexPath.row].text
 		
 		return cell
 	}
